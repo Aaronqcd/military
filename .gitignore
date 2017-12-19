@@ -1,0 +1,13 @@
+*.class
+.DS_Store
+.idea/
+*.iml
+.myeclipse/
+.settings/
+.classpath
+.mymetadata
+.project
+classes/
+out/
+target/
+pricecrawler.log*
