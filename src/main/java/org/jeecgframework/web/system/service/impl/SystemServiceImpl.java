@@ -393,4 +393,10 @@ public class SystemServiceImpl extends CommonServiceImpl implements SystemServic
 		tsDatalogEntity.setVersionNumber(versionNumber + 1);
 		commonDao.save(tsDatalogEntity);
 	}
+
+	public boolean checkTableData(String tableName, String id) {
+		String sql = "select * from "+tableName+" where id ='"+id+"'";
+		List list  = commonDao.findForJdbc(sql);
+		return list.size()>0;
+	}
 }

@@ -207,7 +207,8 @@
       error : function() {// 请求失败处理函数
       },
       success : function(data) {
-        var d = $.parseJSON(data);
+        //var d = $.parseJSON(data);
+        var d = data;
         if (d.success) {
           if (d.attributes.orgNum > 1) {
           	  //用户拥有多个部门，需选择部门进行登录

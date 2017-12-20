@@ -159,4 +159,12 @@ public interface SystemService extends CommonService{
 
 	public void addDataLog(String tableName, String dataId, String dataContent);
 
+	/**
+	 * 根据流程中的table和id查询该条数据在数据表中是否存在
+	 * @param tableName
+	 * @param id
+	 * @return
+	 */
+	public boolean checkTableData(String tableName,String id);
+
 }

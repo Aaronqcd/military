@@ -81,6 +81,19 @@
 	<!-- 异常处理类 -->
 	<bean id="exceptionHandler"
 		class="org.jeecgframework.core.common.exception.GlobalExceptionResolver" />
+
+	<!--Http client Factory -->
+	<bean id="httpClientFactory"
+		  class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+		<property name="connectTimeout" value="10000" />
+		<property name="readTimeout" value="10000" />
+	</bean>
+
+	<!--RestTemplate -->
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<constructor-arg ref="httpClientFactory" />
+	</bean>
+
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
