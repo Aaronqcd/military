@@ -6,12 +6,16 @@ import org.jeecgframework.web.system.pojo.base.TSTimeTaskEntity;
 import org.jeecgframework.web.system.service.TimeTaskServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.CronTriggerBean;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * 在原有功能的基础上面增加数据库的读取
  * @author JueYue
  * @date 2013-9-22
  * @version 1.0
  */
+@Service
 public class DataBaseCronTriggerBean extends CronTriggerBean{
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +25,7 @@ public class DataBaseCronTriggerBean extends CronTriggerBean{
 	/**
 	 * 读取数据库更新文件
 	 */
+	@Transactional
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet();
 		TSTimeTaskEntity task = timeTaskService.findUniqueByProperty
