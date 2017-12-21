@@ -238,8 +238,9 @@ activitiModeler
 	        	            }
 	                	}
 
-	                    var totalAvailable = jQuery(window).height() - offset.top - mainHeader.height() - 21;
-	                    canvas.height(totalAvailable - propSectionHeight);
+	                    //var totalAvailable = jQuery(window).height() - offset.top - mainHeader.height() - 21;
+                        var totalAvailable = jQuery(window).height() - offset.top - mainHeader.height() - 42; // 隐藏顶部标题栏，调整下fix参数 numberone
+                        canvas.height(totalAvailable - propSectionHeight);
 	                    jQuery('#paletteSection').height(totalAvailable);
 
 	                    // Update positions of the resize-markers, according to the canvas
