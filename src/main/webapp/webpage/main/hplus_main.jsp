@@ -78,9 +78,9 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header" style="height: 60px;"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                    <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                    <form role="search" class="navbar-form-custom" method="post" action="search_results.html" style="width: 300px;">
                         <div class="form-group">
-                            <h3 class="form-control" style="line-height:40px;">欢迎使用军工管理系统</h3>
+                            <h3 class="form-control" style="line-height:40px;">欢迎使用<t:mutiLang langKey="system.title"/></h3>
                         </div>
                     </form>
                 </div>

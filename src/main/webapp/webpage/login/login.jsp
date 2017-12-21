@@ -50,7 +50,7 @@
         <div class="login-container" style="padding-top: 50px;">
           <div class="center">
             <h1 id="id-text2" class="grey">
-              军工管理系统
+                <t:mutiLang langKey="system.title"/>
             </h1>
           </div>
           <div class="space-6"></div>
@@ -207,8 +207,7 @@
       error : function() {// 请求失败处理函数
       },
       success : function(data) {
-        //var d = $.parseJSON(data);
-        var d = data;
+        var d = $.parseJSON(data);
         if (d.success) {
           if (d.attributes.orgNum > 1) {
           	  //用户拥有多个部门，需选择部门进行登录
