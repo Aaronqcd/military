@@ -4,24 +4,30 @@
 
 <t:datagrid name="userList" title="common.operation" actionUrl="userController.do?datagrid" fit="true" fitColumns="true" idField="id" queryMode="group" sortName="createDate,userName" sortOrder="asc,desc">
 	<t:dgCol title="common.id" field="id" hidden="true"></t:dgCol>
-	<t:dgCol title="common.username" sortable="false" field="userName" query="true"></t:dgCol>
 	<t:dgCol title="common.real.name" field="realName" query="false"></t:dgCol>
+	<t:dgCol title="common.username" sortable="false" field="userName" query="true"></t:dgCol>
+	<t:dgCol title="性别" field="gender" queryMode="single" dictionary="sex"></t:dgCol>
 	<%--<t:dgCol title="common.department" field="TSDepart_id" query="true" replace="${departsReplace}"></t:dgCol>--%>
-	<t:dgCol title="common.department" sortable="false" field="userOrgList.tsDepart.departname" query="false"></t:dgCol>
-	<t:dgCol title="common.role" field="userKey" ></t:dgCol>
+	<t:dgCol title="部门" sortable="false" field="userOrgList.tsDepart.departname" query="false"></t:dgCol>
+	<t:dgCol title="职位" field="position" queryMode="single"></t:dgCol>
+	<t:dgCol title="学历" field="education" queryMode="single"></t:dgCol>
+	<t:dgCol title="入职时间" field="hiredate" formatter="yyyy-MM-dd" queryMode="single"></t:dgCol>
+	<t:dgCol title="状态" field="userState" queryMode="group" dictionary="userstate"></t:dgCol>
+	<t:dgCol title="联系方式" field="mobilephone" queryMode="group"></t:dgCol>
+	<%--<t:dgCol title="common.role" field="userKey" ></t:dgCol>
 	<t:dgCol title="common.createby" field="createBy" hidden="true"></t:dgCol>
 	<t:dgCol title="common.createtime" field="createDate" formatter="yyyy-MM-dd" hidden="false"></t:dgCol>
 	<t:dgCol title="common.updateby" field="updateBy" hidden="true"></t:dgCol>
 	<t:dgCol title="common.updatetime" field="updateDate" formatter="yyyy-MM-dd" hidden="true"></t:dgCol>
-	<t:dgCol title="common.status" sortable="true" field="status" replace="common.active_1,common.inactive_0,super.admin_-1" ></t:dgCol>
+	<t:dgCol title="common.status" sortable="true" field="status" replace="common.active_1,common.inactive_0,super.admin_-1" ></t:dgCol>--%>
 	
 	<t:dgCol title="common.operation" field="opt" width="100"></t:dgCol>
 	<t:dgFunOpt funname="deleteDialog(id)" title="common.delete" urlclass="ace_button"  urlfont="fa-trash-o"></t:dgFunOpt>
 	<t:dgToolBar title="common.add.param" langArg="common.user" icon="icon-add" url="userController.do?addorupdate" funname="add"></t:dgToolBar>
 	<t:dgToolBar title="common.edit.param" langArg="common.user" icon="icon-edit" url="userController.do?addorupdate" funname="update"></t:dgToolBar>
-	<t:dgToolBar title="common.password.reset" icon="icon-edit" url="userController.do?changepasswordforuser" funname="update"></t:dgToolBar>
+	<%--<t:dgToolBar title="common.password.reset" icon="icon-edit" url="userController.do?changepasswordforuser" funname="update"></t:dgToolBar>
 	<t:dgToolBar title="common.lock.user" icon="icon-edit" url="userController.do?lock&lockvalue=0" funname="lockObj"></t:dgToolBar>
-	<t:dgToolBar title="common.unlock.user" icon="icon-edit" url="userController.do?lock&lockvalue=1" funname="unlockObj"></t:dgToolBar>
+	<t:dgToolBar title="common.unlock.user" icon="icon-edit" url="userController.do?lock&lockvalue=1" funname="unlockObj"></t:dgToolBar>--%>
 	<t:dgToolBar title="excelImport" icon="icon-put" funname="ImportXls"></t:dgToolBar>
 	<t:dgToolBar title="excelOutput" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
 	<t:dgToolBar title="templateDownload" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>

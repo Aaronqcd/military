@@ -545,7 +545,6 @@ public class UserController extends BaseController {
 	/**
 	 * 检查用户名
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "checkUser")
@@ -581,8 +580,13 @@ public class UserController extends BaseController {
 		String password = oConvertUtils.getString(req.getParameter("password"));
 		if (StringUtil.isNotEmpty(user.getId())) {
 			TSUser users = systemService.getEntity(TSUser.class, user.getId());
-			users.setEmail(user.getEmail());
-			users.setOfficePhone(user.getOfficePhone());
+			/*users.setEmail(user.getEmail());
+			users.setOfficePhone(user.getOfficePhone());*/
+			users.setGender(user.getGender());
+			users.setPosition(user.getPosition());
+			users.setEducation(user.getEducation());
+			users.setHiredate(user.getHiredate());
+			users.setUserState(user.getUserState());
 			users.setMobilePhone(user.getMobilePhone());
 
             systemService.executeSql("delete from t_s_user_org where user_id=?", user.getId());
@@ -698,9 +702,6 @@ public class UserController extends BaseController {
 	/**
 	 * easyuiAJAX请求数据： 用户选择角色列表
 	 * 
-	 * @param request
-	 * @param response
-	 * @param dataGrid
 	 * @param user
 	 */
 	@RequestMapping(params = "addorupdate")
@@ -719,8 +720,9 @@ public class UserController extends BaseController {
         TSDepart tsDepart = new TSDepart();
 		if (StringUtil.isNotEmpty(user.getId())) {
 			user = systemService.getEntity(TSUser.class, user.getId());
-			
+			List<Map<String,Object>> files = userService.pushFiles(user.getId());
 			req.setAttribute("user", user);
+			req.setAttribute("files", files);
 			idandname(req, user);
 			getOrgInfos(req, user);
 		}

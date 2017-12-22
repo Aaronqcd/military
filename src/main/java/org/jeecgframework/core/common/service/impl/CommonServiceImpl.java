@@ -1,13 +1,13 @@
 package org.jeecgframework.core.common.service.impl;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jeecgframework.web.cgform.entity.upload.CgUploadEntity;
+import org.jeecgframework.web.cgform.service.config.CgFormFieldServiceI;
 import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
@@ -26,6 +26,7 @@ import org.jeecgframework.tag.vo.datatable.DataTableReturn;
 import org.jeecgframework.tag.vo.easyui.Autocomplete;
 import org.jeecgframework.tag.vo.easyui.ComboTreeModel;
 import org.jeecgframework.tag.vo.easyui.TreeGridModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

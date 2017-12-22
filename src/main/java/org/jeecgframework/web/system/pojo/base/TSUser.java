@@ -4,9 +4,6 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -38,6 +35,25 @@ public class TSUser extends TSBaseUser implements java.io.Serializable {
 	private java.lang.String updateBy;
 	/**修改人名称*/
 	private java.lang.String updateName;
+	/**性别*/
+	@Excel(name="性别")
+	private java.lang.String gender;
+	/**职位*/
+	@Excel(name="职位")
+	private java.lang.String position;
+	/**学历*/
+	@Excel(name="学历")
+	private java.lang.String education;
+	/**入职时间*/
+	@Excel(name="入职时间",format = "yyyy-MM-dd")
+	private java.util.Date hiredate;
+	/**状态*/
+	@Excel(name="状态")
+	private java.lang.String userState;
+	/**头像*/
+	@Excel(name="头像")
+	private java.lang.String avatar;
+
 	@Column(name = "signatureFile", length = 100)
 	public String getSignatureFile() {
 		return this.signatureFile;
@@ -168,5 +184,104 @@ public class TSUser extends TSBaseUser implements java.io.Serializable {
 	 */
 	public void setUpdateName(java.lang.String updateName){
 		this.updateName = updateName;
+	}
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  性别
+	 */
+	@Column(name ="gender",nullable=true,length=1)
+	public java.lang.String getGender(){
+		return this.gender;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  性别
+	 */
+	public void setGender(java.lang.String gender){
+		this.gender = gender;
+	}
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  职位
+	 */
+	@Column(name ="position",nullable=true,length=50)
+	public java.lang.String getPosition(){
+		return this.position;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  职位
+	 */
+	public void setPosition(java.lang.String position){
+		this.position = position;
+	}
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  学历
+	 */
+	@Column(name ="education",nullable=true,length=32)
+	public java.lang.String getEducation(){
+		return this.education;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  学历
+	 */
+	public void setEducation(java.lang.String education){
+		this.education = education;
+	}
+	/**
+	 *方法: 取得java.util.Date
+	 *@return: java.util.Date  入职时间
+	 */
+	@Column(name ="hiredate",nullable=true)
+	public java.util.Date getHiredate(){
+		return this.hiredate;
+	}
+
+	/**
+	 *方法: 设置java.util.Date
+	 *@param: java.util.Date  入职时间
+	 */
+	public void setHiredate(java.util.Date hiredate){
+		this.hiredate = hiredate;
+	}
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  状态
+	 */
+	@Column(name ="user_state",nullable=true,length=1)
+	public java.lang.String getUserState(){
+		return this.userState;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  状态
+	 */
+	public void setUserState(java.lang.String userState){
+		this.userState = userState;
+	}
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  头像
+	 */
+	@Column(name ="avatar",nullable=true,length=100)
+	public java.lang.String getAvatar(){
+		return this.avatar;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  头像
+	 */
+	public void setAvatar(java.lang.String avatar){
+		this.avatar = avatar;
 	}
 }
