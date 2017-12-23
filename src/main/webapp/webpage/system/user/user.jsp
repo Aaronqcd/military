@@ -300,26 +300,6 @@
 				</div>
 				<div class="row show-grid">
 					<div class="col-xs-2 text-center">
-						<b>性别: </b>
-					</div>
-					<div class="col-xs-3">
-						<t:dictSelect field="gender" type="list"
-									  typeGroupCode="sex" defaultVal="${user.gender}" hasLabel="false"  title="性别"
-						></t:dictSelect>
-					</div>
-					<div class="col-xs-2 text-center">
-						<b>部门: </b>
-					</div>
-					<div class="col-xs-5">
-						<input id="departname" name="departname" type="text" readonly="readonly" class="form-control" datatype="*" value="${departname}" placeholder="部门可多选" style="width:50%">
-						<input id="orgIds" name="orgIds" type="hidden" value="${orgIds}">
-						<a href="#" class="easyui-linkbutton" plain="true" icon="icon-search" id="departSearch" onclick="openDepartmentSelect()">选择</a>
-						<a href="#" class="easyui-linkbutton" plain="true" icon="icon-redo" id="departRedo" onclick="callbackClean()">清空</a>
-						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-xs-2 text-center">
 						<b>职位: </b>
 					</div>
 					<div class="col-xs-4">
@@ -357,11 +337,11 @@
 				</div>
 				<div class="row show-grid">
 					<div class="col-xs-2 text-center">
-						<b>联系方式: </b>
+						<b>手机号码: </b>
 					</div>
 					<div class="col-xs-4">
-						<input class="form-control" name="mobilePhone" value="${user.mobilePhone}" datatype="m" errormsg="联系方式不正确" ignore="ignore"
-							placeholder="请输入联系方式">
+						<input class="form-control" name="mobilePhone" value="${user.mobilePhone}" datatype="m" errormsg="手机号码不正确" ignore="ignore"
+							placeholder="请输入手机号码">
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 					</div>
 					<div class="col-xs-2 text-center">
@@ -450,6 +430,45 @@
 							<span id="file_uploadspan"><input type="file" name="avatar" id="avatar" /></span>
 						</div>
 						<div class="form" id="filediv_file"></div>
+						<span class="Validform_checktip" style="float:left;height:0px;"></span>
+					</div>
+				</div>
+				<div class="row show-grid">
+					<div class="col-xs-2 text-center">
+						<b>性别: </b>
+					</div>
+					<div class="col-xs-3">
+						<t:dictSelect field="gender" type="list"
+									  typeGroupCode="sex" defaultVal="${user.gender}" hasLabel="false"  title="性别"
+						></t:dictSelect>
+					</div>
+					<div class="col-xs-2 text-center">
+						<b>部门: </b>
+					</div>
+					<div class="col-xs-5">
+						<input id="departname" name="departname" type="text" readonly="readonly" class="form-control" datatype="*" value="${departname}" placeholder="部门可多选" style="width:50%">
+						<input id="orgIds" name="orgIds" type="hidden" value="${orgIds}">
+						<a href="#" class="easyui-linkbutton" plain="true" icon="icon-search" id="departSearch" onclick="openDepartmentSelect()">选择</a>
+						<a href="#" class="easyui-linkbutton" plain="true" icon="icon-redo" id="departRedo" onclick="callbackClean()">清空</a>
+						<span class="Validform_checktip" style="float:left;height:0px;"></span>
+					</div>
+				</div>
+				<div class="row show-grid">
+					<div class="col-xs-2 text-center">
+						<b>邮箱: </b>
+					</div>
+					<div class="col-xs-3">
+						<input id="email" name="email" type="text" class="form-control"
+							   ignore="ignore" value="${user.email}" placeholder="请输入邮箱"/>
+						<span class="Validform_checktip" style="float:left;height:0px;"></span>
+					</div>
+					<div class="col-xs-2 text-center">
+						<b>角色: </b>
+					</div>
+					<div class="col-xs-5">
+						<input id="roleid" name="roleid" type="hidden" value="${id}"/>
+						<input name="roleName" id="roleName" type="text" class="form-control" value="${roleName }" readonly="readonly" datatype="*" style="width: 50%"/>
+						<t:choose hiddenName="roleid" hiddenid="id" textname="roleName" url="userController.do?roles" name="roleList" icon="icon-search" title="common.role.list" isclear="true" isInit="true"></t:choose>
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 					</div>
 				</div>

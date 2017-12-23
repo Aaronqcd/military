@@ -588,6 +588,7 @@ public class UserController extends BaseController {
 			users.setHiredate(user.getHiredate());
 			users.setUserState(user.getUserState());
 			users.setMobilePhone(user.getMobilePhone());
+			users.setEmail(user.getEmail());
 
             systemService.executeSql("delete from t_s_user_org where user_id=?", user.getId());
             saveUserOrgList(req, user);
