@@ -1,17 +1,18 @@
 package org.jeecgframework.web.cgform.service.impl.upload;
 
-import java.util.Map;
-
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ContextHolderUtils;
 import org.jeecgframework.core.util.FileUtils;
+import org.jeecgframework.core.util.PropertiesUtil;
+import org.jeecgframework.web.cgform.dao.upload.CgFormUploadDao;
+import org.jeecgframework.web.cgform.entity.upload.CgUploadEntity;
+import org.jeecgframework.web.cgform.service.upload.CgUploadServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.jeecgframework.web.cgform.dao.upload.CgFormUploadDao;
-import org.jeecgframework.web.cgform.entity.upload.CgUploadEntity;
-import org.jeecgframework.web.cgform.service.upload.CgUploadServiceI;
+import java.io.File;
+import java.util.Map;
 @Service("cgUploadService")
 @Transactional
 public class CgUploadServiceImpl extends CommonServiceImpl implements CgUploadServiceI {
@@ -27,7 +28,11 @@ public class CgUploadServiceImpl extends CommonServiceImpl implements CgUploadSe
 		String fileName = FileUtils.getFilePrefix2(realpath);
 		
 		//获取部署项目绝对地址
-		String realPath = ContextHolderUtils.getSession().getServletContext().getRealPath("/");
+		//String realPath = ContextHolderUtils.getSession().getServletContext().getRealPath("/");
+		PropertiesUtil util = new PropertiesUtil("sysConfig.properties");
+		String uploadRelatePath = util.readProperty("uploadRelatePath");
+		File f = new File(ContextHolderUtils.getSession().getServletContext().getRealPath("/"));
+		String realPath = f.getParentFile().getParent() + uploadRelatePath;
 		FileUtils.delete(realPath+realpath);
 		FileUtils.delete(realPath+fileName+".pdf");
 		FileUtils.delete(realPath+fileName+".swf");

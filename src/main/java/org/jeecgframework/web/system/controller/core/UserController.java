@@ -616,6 +616,11 @@ public class UserController extends BaseController {
 				user.setStatus(Globals.User_Normal);
 				user.setDeleteFlag(Globals.Delete_Normal);
 				systemService.save(user);
+				String sql = "select * from t_s_base_user bu join t_s_user u on bu.id=u.id where bu.username=?";
+				Map<String, Object> map = systemService.findOneForJdbc(sql, user.getUserName());
+				TSUser u = new TSUser();
+				u.setId((String) map.get("id"));
+				j.setObj(u);
                 // todo zhanggm 保存多个组织机构
                 saveUserOrgList(req, user);
 				message = "用户: " + user.getUserName() + "添加成功";
