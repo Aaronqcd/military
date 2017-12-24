@@ -1,0 +1,28 @@
+/* GISDIS 主页面 css开始 */
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+#treeGroup {
+	height: 100%;
+	width: 280px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	float: left;
+	background-color: #eeeeee;
+	overflow:auto;
+}
+
+#sipfunction {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	width: auto;
+}

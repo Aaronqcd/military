@@ -1,0 +1,132 @@
+.padding-top-8 {
+	padding-top: 8px
+}
+.padding-top-10 {
+	padding-top: 10px
+}
+.padding-top-50 {
+	padding-top: 50px
+}
+.width-10 {
+	width: 10%
+}
+.width-15 {
+	width: 15%
+}
+.height-40 {
+	height: 40px
+}
+.height-50 {
+	height: 50px
+}
+.height-90 {
+	height: 90px
+}
+.height-100 {
+	height: 100px
+}
+.height-108 {
+	height: 108px
+}
+.height-200 {
+	height: 200px
+}
+.padding-left-10 {
+	padding-left: 10px
+}
+.text-align-left {
+	text-align:left
+}
+.text-align-center {
+	text-align:center
+}
+.text-align-right {
+	text-align:right
+}
+.vertical-align-middle {
+	vertical-align: middle
+}
+.inline-input {
+	display: inline;
+	width: 40%;
+}
+.padding-left-0 {
+	padding-left: 0;
+}
+.padding-right-10 {
+	padding-right: 10px;
+}
+.font-size-15 {
+	font-size:15px
+}
+.font-size-30 {
+	font-size:30px
+}
+.margin-top-5 {
+	margin-top:5px
+}
+.margin-left-100 {
+	margin-left: 100px
+}
+.line-height-39 {
+	line-height: 39px
+}
+.line-height-40 {
+	line-height: 40px
+}
+.float-right {
+	float: right;
+}
+.btn-custom {
+	background-color: #4DA8F9;
+	color: #FFFFFF;
+	padding: 5px 20px;
+	border-radius: 6px;
+}
+.title-panel {
+	background-color: #FFFFFF;
+	border-radius: 0;
+	margin-bottom: 0;height:60px;
+}
+.title-span {
+	line-height: 60px;
+	font-size: 15px;
+}
+.apply-search {
+	background-color: #f5f5f5;
+	border-radius: 0;
+	margin-bottom: 0;
+	min-height: 70px;
+}
+.apply-main {
+	background-color: #FFFFFF;
+	border-radius: 0;
+	margin-bottom: 0;
+	min-height: 662px;
+}
+.display-inline {
+	display: inline
+}
+.padding-10-10 {
+	padding: 10px 10px;
+}
+.min-height-732 {
+	min-height: 732px;
+}
+.application-panel {
+	border: 1px solid #ce9a62; 
+	height: 90px;
+	background-color: #ce9a62;
+	cursor: pointer;
+	margin-top: 10px;
+}
+.m{ width: 700px; height: 400px; margin-left: auto; margin-right: auto;  }
+.dowebok { width: 700px; margin: 0 auto; font-size: 0;}
+.dowebok li { display: inline-block; width: 32%; margin-left: 1%; padding-top: 1%;}
+.dowebok li img { width: 100%;}
+video {
+    width: 100%!important;
+}
+.margin-bottom-10 {
+	margin-bottom: 10px;
+}
