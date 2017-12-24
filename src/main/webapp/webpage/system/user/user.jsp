@@ -284,7 +284,7 @@
 						<b><t:mutiLang langKey="common.real.name"/>: </b>
 					</div>
 					<div class="col-xs-4">
-						<input id="realName" class="form-control" name="realName" value="${user.realName }" datatype="s2-10" placeholder="请输入姓名,必填">
+						<input id="realName" class="form-control" name="realName" value="${user.realName }" datatype="s2-10" placeholder="姓名范围在2~10位字符,必填">
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 					</div>
 					<div class="col-xs-2 text-center">
@@ -293,7 +293,7 @@
 					<div class="col-xs-4">
 						<c:if test="${user.id!=null }"> ${user.userName } </c:if>
 						<c:if test="${user.id==null }">
-							<input id="userName" class="form-control" name="userName" validType="t_s_base_user,userName,id" value="${user.userName }" datatype="s2-10" placeholder="用户账号范围在2~10位字符,必填"/>
+							<input id="userName" class="form-control" name="userName" validType="t_s_base_user,userName,id" value="${user.userName }" datatype="s2-10" placeholder="工号范围在2~10位字符,必填"/>
 							<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						</c:if>
 					</div>

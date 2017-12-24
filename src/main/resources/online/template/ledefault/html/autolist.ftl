@@ -58,6 +58,7 @@ function createDataGrid${config_id}(){
 					<#if config_ischeckbox=="Y">{field:'ck',checkbox:true},</#if>
 					<#list config_fieldList  as x>  
 						 {	field:'${x['field_id']}',
+							align:'center',
 						 	title:'<@mutiLang langKey="${x['field_title']}"/>',
 						 	<#if x['field_isShow'] == "N" >hidden:true,
 						 	</#if>
@@ -122,7 +123,7 @@ function createDataGrid${config_id}(){
 						 	},
 					</#list>
 			</#if>
-			{field:'opt',title:'操作',width:200,formatter:function(value,rec,index){
+			{field:'opt',title:'操作',align:'center',width:200,formatter:function(value,rec,index){
 						if(!rec.id){return '';}
 						var href='';
 						<#if config_noliststr?index_of("delete")==-1>

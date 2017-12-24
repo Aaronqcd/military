@@ -27,6 +27,7 @@
 				<!--end dangzhenghui 20170310 TASK #1752 【改进】online的[页面属性] [校验字典] [外键] 没有序号-->
 				<th align="center" bgcolor="#EEEEEE" mutiLang_id="fieldname">字段名称</th>
 				<th align="center" bgcolor="#EEEEEE" mutiLang_id="fieldremark">字段备注</th>
+				<th align="center" bgcolor="#EEEEEE" mutiLang_id="ordernum">字段顺序</th>
 				<th align="center" bgcolor="#EEEEEE" mutiLang_id="formdisplay">表单显示</th>
 				<th align="center" bgcolor="#EEEEEE" mutiLang_id="griddisplay">列表显示</th>
 				<th align="center" bgcolor="#EEEEEE" mutiLang_id="controltype">控件类型</th>
@@ -49,6 +50,9 @@
 				<td align="left"><input style="width: 120px;" type="text"
 					name="columnscontent_index"
 					readonly="readonly" /></td>
+				<td align="left">
+					<input name="columns[#index#].orderNum" nullmsg="pleaseinputfieldsquence" datatype="n1-2" errormsg="fieldsquencefromonetotwo"
+						   maxlength="2" type="text" style="width: 50px;"></td>
 				<td align="left"><input type="checkbox" checked="checked"
 					name="columns[#index#].isShow" style="width: 50px;"></td>
 				<td align="left"><input type="checkbox" checked="checked"

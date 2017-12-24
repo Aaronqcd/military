@@ -162,6 +162,20 @@ public class UserController extends BaseController {
 	}
 
 	/**
+	 * 用户列表页面跳转
+	 *
+	 * @return
+	 */
+	@RequestMapping(params = "userManage")
+	public String userManage(HttpServletRequest request) {
+		// 给部门查询条件中的下拉框准备数据
+		List<TSDepart> departList = systemService.getList(TSDepart.class);
+		request.setAttribute("departsReplace", RoletoJson.listToReplaceStr(departList, "departname", "id"));
+		departList.clear();
+		return "system/user/userManageList";
+	}
+
+	/**
 	 * 用户信息
 	 * 
 	 * @return

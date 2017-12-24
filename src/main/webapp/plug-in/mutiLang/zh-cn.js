@@ -33,6 +33,7 @@ var recommendbrowser = "(推荐使用IE8+,谷歌浏览器可以获得更快,更�
 var platform = "JEECG 微云快速开发平台";
 var fieldname = "字段名称";
 var fieldremark = "字段备注";
+var ordernum = "字段顺序";
 var fieldhref = "字段Href";
 var	validaterule = "验证规则";
 var	dicttable = "字典Table";
