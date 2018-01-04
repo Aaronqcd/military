@@ -122,7 +122,12 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 			Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 			// 文件数据库保存路径
 			String path = uploadbasepath + "/";// 文件保存在硬盘的相对路径
-			String realPath = uploadFile.getMultipartRequest().getSession().getServletContext().getRealPath("/") + "/" + path;// 文件的硬盘真实路径
+			//String realPath = uploadFile.getMultipartRequest().getSession().getServletContext().getRealPath("/") + "/" + path;// 文件的硬盘真实路径
+			//根据sysConfig.properties中uploadRelatePath的值获取上传路径，与tomcat的webapps目录同级
+			PropertiesUtil util = new PropertiesUtil("sysConfig.properties");
+			String uploadRelatePath = util.readProperty("uploadRelatePath");
+			File f = new File(uploadFile.getMultipartRequest().getSession().getServletContext().getRealPath("/"));
+			String realPath = f.getParentFile().getParent() + uploadRelatePath + path;
 			File file = new File(realPath);
 			if (!file.exists()) {
 				file.mkdirs();// 创建根目录
@@ -275,7 +280,11 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 		BufferedOutputStream bos = null;
 		HttpServletResponse response = uploadFile.getResponse();
 		HttpServletRequest request = uploadFile.getRequest();
-		String ctxPath = request.getSession().getServletContext().getRealPath("/");
+		//String ctxPath = request.getSession().getServletContext().getRealPath("/");
+		PropertiesUtil util = new PropertiesUtil("sysConfig.properties");
+		String uploadRelatePath = util.readProperty("uploadRelatePath");
+		File f = new File(request.getSession().getServletContext().getRealPath("/"));
+		String ctxPath = f.getParentFile().getParent() + uploadRelatePath;
 		String downLoadPath = "";
 		long fileLength = 0;
 		if (uploadFile.getRealPath() != null&&uploadFile.getContent() == null) {

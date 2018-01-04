@@ -162,6 +162,20 @@ public class UserController extends BaseController {
 	}
 
 	/**
+	 * 用户列表页面跳转
+	 *
+	 * @return
+	 */
+	@RequestMapping(params = "userManage")
+	public String userManage(HttpServletRequest request) {
+		// 给部门查询条件中的下拉框准备数据
+		List<TSDepart> departList = systemService.getList(TSDepart.class);
+		request.setAttribute("departsReplace", RoletoJson.listToReplaceStr(departList, "departname", "id"));
+		departList.clear();
+		return "system/user/userManageList";
+	}
+
+	/**
 	 * 用户信息
 	 * 
 	 * @return
@@ -545,7 +559,6 @@ public class UserController extends BaseController {
 	/**
 	 * 检查用户名
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "checkUser")
@@ -581,9 +594,15 @@ public class UserController extends BaseController {
 		String password = oConvertUtils.getString(req.getParameter("password"));
 		if (StringUtil.isNotEmpty(user.getId())) {
 			TSUser users = systemService.getEntity(TSUser.class, user.getId());
-			users.setEmail(user.getEmail());
-			users.setOfficePhone(user.getOfficePhone());
+			/*users.setEmail(user.getEmail());
+			users.setOfficePhone(user.getOfficePhone());*/
+			users.setGender(user.getGender());
+			users.setPosition(user.getPosition());
+			users.setEducation(user.getEducation());
+			users.setHiredate(user.getHiredate());
+			users.setUserState(user.getUserState());
 			users.setMobilePhone(user.getMobilePhone());
+			users.setEmail(user.getEmail());
 
             systemService.executeSql("delete from t_s_user_org where user_id=?", user.getId());
             saveUserOrgList(req, user);
@@ -612,6 +631,11 @@ public class UserController extends BaseController {
 				user.setStatus(Globals.User_Normal);
 				user.setDeleteFlag(Globals.Delete_Normal);
 				systemService.save(user);
+				String sql = "select * from t_s_base_user bu join t_s_user u on bu.id=u.id where bu.username=?";
+				Map<String, Object> map = systemService.findOneForJdbc(sql, user.getUserName());
+				TSUser u = new TSUser();
+				u.setId((String) map.get("id"));
+				j.setObj(u);
                 // todo zhanggm 保存多个组织机构
                 saveUserOrgList(req, user);
 				message = "用户: " + user.getUserName() + "添加成功";
@@ -698,9 +722,6 @@ public class UserController extends BaseController {
 	/**
 	 * easyuiAJAX请求数据： 用户选择角色列表
 	 * 
-	 * @param request
-	 * @param response
-	 * @param dataGrid
 	 * @param user
 	 */
 	@RequestMapping(params = "addorupdate")
@@ -719,8 +740,9 @@ public class UserController extends BaseController {
         TSDepart tsDepart = new TSDepart();
 		if (StringUtil.isNotEmpty(user.getId())) {
 			user = systemService.getEntity(TSUser.class, user.getId());
-			
+			List<Map<String,Object>> files = userService.pushFiles(user.getId());
 			req.setAttribute("user", user);
+			req.setAttribute("files", files);
 			idandname(req, user);
 			getOrgInfos(req, user);
 		}

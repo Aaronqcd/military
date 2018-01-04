@@ -294,7 +294,7 @@ public class CgFormHeadController extends BaseController {
 		CgFormHeadEntity table = judgeTableIsNotExit(cgFormHead,oldTable,msg);
 		message = msg.toString();
 		//step.3 刷新orderNum并且去重复
-		refreshFormFieldOrderNum(cgFormHead);
+		//refreshFormFieldOrderNum(cgFormHead);
 		
 		
 		if (StringUtil.isNotEmpty(cgFormHead.getId())&&table!=null) {

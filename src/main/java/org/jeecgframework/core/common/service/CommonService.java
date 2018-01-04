@@ -359,5 +359,4 @@ public interface CommonService {
 	 * @return
 	 */
 	public <T> List<T> executeProcedure(String procedureSql,Object... params);
-
 }

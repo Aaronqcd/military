@@ -1,0 +1,32 @@
+#IE10默认在input框中输入内容后会显示一个‘X’按钮，方便删除输入的所有内容。
+#在password输入框显示一个眼睛的按钮，去掉眼睛和叉叉的方法如下：
+input:: -ms-clear{display : none;} 
+input:: -ms-reveal {display : none;}
+
+.dkSelectTreeCont {	
+	background: #FFF;
+	background-color: *#FFF;
+	border:1px solid  #AECAF0;
+	margin-top:0px;
+	background:#ffffff;/*#DAE0EF;#A0BED5;*/ 
+	display:block;	
+	overflow-x:none;
+	overflow-y:none
+}
+
+ul.ztree {margin-top: 1px;border: 1px solid #617775;background: #f0f6e4;overflow-x:auto;}
+ul.log {border: 1px solid #617775;background: #f0f6e4;width:300px;height:170px;overflow: hidden;}
+ul.log.small {height:45px;}
+ul.log li {color: #666666;list-style: none;padding-left: 10px;}
+ul.log li.dark {background-color: #E3E3E3;}
+
+.dkListParent{position:relative}
+ 
+ul.ztree {margin-top: 1px;border: 0px solid #617775;background: #ffffff;overflow-x:auto;}
+
+.l-loading
+{
+    position: absolute;z-index: 91000;  top:40%; left:50%; overflow:hidden;
+    background:url('images/loading.gif') no-repeat 0px 0px;width:24px; height:24px; 
+     display:none;
+}

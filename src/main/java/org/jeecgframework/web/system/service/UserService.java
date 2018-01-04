@@ -3,6 +3,10 @@ package org.jeecgframework.web.system.service;
 import org.jeecgframework.core.common.service.CommonService;
 
 import org.jeecgframework.web.system.pojo.base.TSUser;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * 
  * @author  张代浩
@@ -27,4 +31,10 @@ public interface UserService extends CommonService{
 	 * @param user
 	 */
 	public String trueDel(TSUser user);
+
+	/**
+	 * 如果表单带有附件，则查询出来传递到页面
+	 * @param id 表单主键，用户查找附件数据
+	 */
+	public List<Map<String,Object>> pushFiles(String id);
 }
