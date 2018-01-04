@@ -399,7 +399,7 @@
 					  	<div class="row show-grid">
 							<div class="col-xs-3 text-center"><b><@mutiLang langKey="${po.content?if_exists?html}"/>：</b></div>
 							<div class="col-xs-3">
-								<textarea id="${po.field_name}" ${po.extend_json?if_exists} name="${po.field_name}"  style="width: 600px" rows="6"
+								<textarea id="${po.field_name}" ${po.extend_json?if_exists} name="${po.field_name}"  style="width: 400px;margin-top: 10px" rows="2"
 								 <#-- update--begin--author:zhangjiaqiang Date:20170417 for:增加校验必填项 -->
 									<#if po.field_must_input??><#if po.field_must_input == 'Y' || po.is_null != 'Y'>ignore="checked"<#else>ignore="ignore"</#if></#if>
 									<#-- update--end--author:zhangjiaqiang Date:20170417 for:增加校验必填项 -->
@@ -423,7 +423,7 @@
 						<div class="row show-grid">
 							<div class="col-xs-3 text-center"><b><@mutiLang langKey="${po.content?if_exists?html}"/>：</b></div>
 							<div class="col-xs-3">
-								<textarea id="${po.field_name}" ${po.extend_json?if_exists} name="${po.field_name}" rows="7" style="width: 600px"
+								<textarea id="${po.field_name}" ${po.extend_json?if_exists} name="${po.field_name}" rows="2" style="width: 400px;margin-top: 10px"
 								 <#-- update--begin--author:zhangjiaqiang Date:20170417 for:增加校验必填项 -->
 									<#if po.field_must_input??><#if po.field_must_input == 'Y' || po.is_null != 'Y'>ignore="checked"<#else>ignore="ignore"</#if></#if>
 									<#-- update--end--author:zhangjiaqiang Date:20170417 for:增加校验必填项 -->

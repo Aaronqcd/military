@@ -126,16 +126,10 @@ function createDataGrid${config_id}(){
 			{field:'opt',title:'操作',align:'center',width:200,formatter:function(value,rec,index){
 						if(!rec.id){return '';}
 						var href='';
-						<#if config_noliststr?index_of("delete")==-1>
-						<#-- //update-begin--Author:zhangdaihao  Date:20160925 for：TASK #1344 [链接图标] online功能测试的按钮链接图标修改 -->
-						href+="<a href='javascript:void(0)' class='ace_button' onclick=delObj('cgAutoListController.do?del&configId=${config_id}&id="+rec.id+"','${config_id}List')>";
-						href+="<i class='fa fa-trash-o'></i>删除</a>";
-						<#-- //update-end--Author:zhangdaihao  Date:20160925 for：TASK #1344 [链接图标] online功能测试的按钮链接图标修改 -->
-						</#if>
 						<#list config_buttons as x>
 							<#if x['buttonStyle'] == 'link' && x['buttonStatus']=='1' && config_noliststr?index_of("${x['buttonCode']}")==-1>
 								<#-- //update-begin--Author:zhangdaihao  Date:20160925 for：TASK #1344 [链接图标] online功能测试的按钮链接图标修改 -->
-								href+="<a style='margin-left:5px;' href='javascript:void(0)' class='ace_button' buttonCode='${x['buttonCode']}' formId ='${x['formId']}' ";
+								href+="<a style='margin-right:5px;' href='javascript:void(0)' class='ace_button' buttonCode='${x['buttonCode']}' formId ='${x['formId']}' ";
 								<#if x['optType'] == 'action'>
 								href+=" onclick=\"doBusButtonForLink('cgFormBuildController.do?doButton&formId=${x['formId']}&buttonCode=${x['buttonCode']}&tableName=${config_id}','${x['buttonName']}','${config_id}List','"+rec.id+"')\"";
 								<#else>
@@ -155,11 +149,17 @@ function createDataGrid${config_id}(){
 								<#elseif x['buttonName']?index_of("剪切") gt -1>
 									href+="<i class='fa fa-cut'></i>${x['buttonName']}</a>";
 								<#else>
-									href+="<i class='fa fa-wrench'></i>${x['buttonName']}</a>";
+									href+="<i class='${x['buttonIcon']}'></i>${x['buttonName']}</a>";
 								</#if>
 								<#-- //update-begin--Author:zhangdaihao  Date:20160925 for：TASK #1344 [链接图标] online功能测试的按钮链接图标修改 -->
 							</#if>
 						</#list>
+						<#if config_noliststr?index_of("delete")==-1>
+						<#-- //update-begin--Author:zhangdaihao  Date:20160925 for：TASK #1344 [链接图标] online功能测试的按钮链接图标修改 -->
+							href+="<a href='javascript:void(0)' class='ace_button' onclick=delObj('cgAutoListController.do?del&configId=${config_id}&id="+rec.id+"','${config_id}List')>";
+							href+="<i class='fa fa-trash-o'></i>删除</a>";
+						<#-- //update-end--Author:zhangdaihao  Date:20160925 for：TASK #1344 [链接图标] online功能测试的按钮链接图标修改 -->
+						</#if>
 						return href;
 						}
 			}
