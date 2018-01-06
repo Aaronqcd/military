@@ -500,6 +500,101 @@ public class DataFormController {
 		}
 	}
 
+	@RequestMapping(params = "flowChart")
+	@ResponseBody
+	public void flowChart(HttpServletRequest req, HttpServletResponse res) {
+		// 1.创建核心引擎流程对象processEngine
+		ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceBusinessKey(req.getParameter("id"),req.getParameter("tableName")).singleResult();
+		// 流程定义
+		if (pi != null) {
+			// 获取流程图
+			BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());
+			// 正在活动节点
+			List<String> activeActivityIds = runtimeService.getActiveActivityIds(pi.getId());
+			// 流程图生成器
+			ProcessDiagramGenerator pdg = processEngine.getProcessEngineConfiguration().getProcessDiagramGenerator();
+			// 生成流图片
+			InputStream in = pdg.generateDiagram(bpmnModel, "PNG",activeActivityIds, activeActivityIds,
+					URLDecoder.decode(processEngine.getProcessEngineConfiguration().getActivityFontName(), "UTF-8"),
+					URLDecoder.decode(processEngine.getProcessEngineConfiguration().getLabelFontName(), "UTF-8"),
+					URLDecoder.decode(processEngine.getProcessEngineConfiguration().getActivityFontName(), "UTF-8"),
+					processEngine.getProcessEngineConfiguration().getProcessEngineConfiguration().getClassLoader(),
+					1.0);
+			try {
+				// 生成本地图片 ,如果web展示直接输出流返回到response
+				res.setContentType("text/html; charset=UTF-8");
+				res.setContentType("image/jpeg");
+				OutputStream out = res.getOutputStream();
+				byte[] b = new byte[1024];
+				int len = -1;
+				while ((len = in.read(b, 0, 1024)) != -1) {
+					res.getOutputStream().write(b, 0, len);
+				}
+				in.close();
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				throw new RuntimeException("生成流程图异常！", e);
+			}
+		} else {
+			// 历史流程
+			HistoricProcessInstance hpi = historyService.createHistoricProcessInstanceQuery().processInstanceBusinessKey(req.getParameter("id")).singleResult();
+			// 流程图
+			BpmnModel bpmnModel = repositoryService.getBpmnModel(hpi.getProcessDefinitionId());
+			// 流程图生成器
+			ProcessDiagramGenerator pdg = processEngine.getProcessEngineConfiguration().getProcessDiagramGenerator();
+			// 历史高亮环节
+			// List<HistoricActivityInstance> highLightedActivitList =
+			// historyService.createHistoricActivityInstanceQuery().processInstanceId(hpi.getId()).list();
+
+			// 结束类型的高亮点
+			List<HistoricActivityInstance> engList = historyService.createHistoricActivityInstanceQuery()
+					.processInstanceId(hpi.getId()).activityType("endEvent").list();
+			// 高亮环节id集合
+			List<String> highLightedActivitis = new ArrayList<String>();
+			for (HistoricActivityInstance tempActivity : engList) {
+				String activityId = tempActivity.getActivityId();
+				highLightedActivitis.add(activityId);
+			}
+			// 所有定义的节点
+			// ProcessDefinitionEntity definitionEntity =
+			// (ProcessDefinitionEntity)repositoryService.getProcessDefinition(hpi.getProcessDefinitionId());
+			// 高亮线路id集合
+			// List<String> highLightedFlows =
+			// getHighLightedFlows(definitionEntity,engList);
+			// 中文显示的是口口口，设置字体就好了
+			InputStream in = pdg.generateDiagram(bpmnModel, "png",highLightedActivitis, highLightedActivitis,
+					URLDecoder.decode(processEngine.getProcessEngineConfiguration().getActivityFontName(), "UTF-8"),
+					URLDecoder.decode(processEngine.getProcessEngineConfiguration().getLabelFontName(), "UTF-8"),
+					URLDecoder.decode(processEngine.getProcessEngineConfiguration().getActivityFontName(), "UTF-8"),
+					processEngine.getProcessEngineConfiguration().getProcessEngineConfiguration().getClassLoader(),
+					1.0);
+
+			try {
+				// 生成本地图片 ,如果web展示直接输出流返回到response
+				res.setContentType("text/html; charset=UTF-8");
+				res.setContentType("image/jpeg");
+				OutputStream out = res.getOutputStream();
+				byte[] b = new byte[1024];
+				int len = -1;
+				while ((len = in.read(b, 0, 1024)) != -1) {
+					res.getOutputStream().write(b, 0, len);
+				}
+				in.close();
+				out.flush();
+				out.close();
+				/*
+				 * String msg = "<center>当前工单流程已经结束！</center>";
+				 * res.setHeader("Content-type", "text/html;charset=UTF-8");
+				 * OutputStream ps = res.getOutputStream();
+				 * ps.write(msg.getBytes("UTF-8"));
+				 */
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	private List<String> getHighLightedFlows(ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstances) {
 		List<String> highFlows = new ArrayList<String>();// 用以保存高亮的线flowId
 		for (int i = 0; i < historicActivityInstances.size() - 1; i++) {// 对历史流程节点进行遍历

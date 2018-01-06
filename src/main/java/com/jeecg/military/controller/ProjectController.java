@@ -2,6 +2,8 @@ package com.jeecg.military.controller;
 
 import com.jeecg.military.entity.ProjectEntity;
 import com.jeecg.military.service.ProjectServiceI;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Model;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -66,7 +68,8 @@ public class ProjectController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+	@Autowired
+	private RepositoryService repositoryService;
 
 
 	/**
@@ -100,6 +103,32 @@ public class ProjectController extends BaseController {
 		cq.add();
 		this.projectService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
+	}
+
+	/**
+	 * 获取所有的项目
+	 * @param request
+	 * @param response
+     * @return
+     */
+	@RequestMapping("getProjects")
+	@ResponseBody
+	public List<ProjectEntity> getProjects(HttpServletRequest request, HttpServletResponse response) {
+		List<ProjectEntity> projectEntities = systemService.getList(ProjectEntity.class);
+		return projectEntities;
+	}
+
+	/**
+	 * 根据项目id获取流程模型
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("getActModel")
+	@ResponseBody
+	public Model getActModel(String projectId, HttpServletRequest request, HttpServletResponse response) {
+		Model model = repositoryService.createModelQuery().modelCategory(projectId).singleResult();
+		return model;
 	}
 	
 	/**

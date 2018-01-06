@@ -42,6 +42,14 @@
 				<span class="help-inline"></span>
 			</div>
 		</div>
+		  <div class="control-group">
+			  <label class="control-label">所属项目：</label>
+			  <div class="controls">
+				  <select id="category" name="category" class="required form-control">
+				  </select>
+				  <span class="help-inline"></span>
+			  </div>
+		  </div>
 			 <div class="control-group">
 			<label class="control-label">模块描述：</label>
 			<div class="controls">
@@ -59,9 +67,28 @@
 </body>
 </html>
 <script>
+	$(function() {
+		getProject();
+	});
+
+	function getProject() {
+		$.ajax({
+			type: "POST",
+			url:"${pageContext.request.contextPath}/projectController/getProjects.do",
+			dataType: "json",
+			success: function(data) {
+				console.log(data);
+				for(var i=0; i<data.length; i++) {
+					$("#category").append("<option value='"+data[i].id+"'>"+data[i].projectName+"</option>");
+				}
+			}
+		});
+	}
+
 function addmodel(){
 var name=$("#name").val();
 var key=$("#key").val();
+	var category = $("#category").val();
 	if(name==null || name=="" ){
 		alert("流程名称不能为空！");
 		return false;
@@ -69,24 +96,25 @@ var key=$("#key").val();
 	if(key==null || key ==""){
 		alert("流程标识不能为空！");
 		return false;
-	}else
-	{
-	
-		$.ajax({
-			cache: true,
-			type: "POST",
-			url:"${pageContext.request.contextPath}/activitiController/create.do",
-			data:$('#inputForm').serialize(),// 你的formid
-			async: false,
-			error: function(request) {
-				console.log(request);
-				//alert("Connection error");
-			},
-			success: function(data) {
-			  window.location.href='${pageContext.request.contextPath}/activitiController/processDefinition/list.do';
-			  alert("提交成功！");
-			}
-		});
 	}
+	if(category==null || category=="") {
+		alert("所属项目不能为空！");
+		return false;
+	}
+	$.ajax({
+		cache: true,
+		type: "POST",
+		url:"${pageContext.request.contextPath}/activitiController/create.do",
+		data:$('#inputForm').serialize(),// 你的formid
+		async: false,
+		error: function(request) {
+			console.log(request);
+			//alert("Connection error");
+		},
+		success: function(data) {
+		  window.location.href='${pageContext.request.contextPath}/activitiController/processDefinition/list.do';
+		  alert("提交成功！");
+		}
+	});
 }
 </script>

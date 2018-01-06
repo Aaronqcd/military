@@ -52,6 +52,7 @@ public class ActModelService {
 		
 		Model modelData = repositoryService.newModel();
 		description = StringUtils.defaultString(description);
+		category = StringUtils.defaultString(category);
 		modelData.setKey(StringUtils.defaultString(key));
 		modelData.setName(name);
 		modelData.setCategory(category);
